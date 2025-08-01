@@ -1,0 +1,69 @@
+<h2 style="
+  margin: 20px 0;
+  color: #3f51b5;
+  font-size: 24px;
+  font-weight: 600;
+  border-left: 5px solid #3f51b5;
+  padding-left: 10px;
+">
+  Liste des clients
+</h2>
+
+<table mat-table 
+[dataSource]="dataSource">
+
+    <!-- Colonne Nom -->
+  <ng-container matColumnDef="id"> 
+    <th mat-header-cell *matHeaderCellDef> id </th>
+    <td mat-cell *matCellDef="let client"> {{client.id}} </td>
+  </ng-container>
+
+  <!-- Colonne Nom -->
+  <ng-container matColumnDef="nom"> 
+    <th mat-header-cell *matHeaderCellDef> Nom </th>
+    <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
+  </ng-container>
+
+  <!-- Colonne Prénom -->
+  <ng-container matColumnDef="prenom">
+    <th mat-header-cell *matHeaderCellDef> Prénom </th>
+    <td mat-cell *matCellDef="let client"> {{client.prenom}} </td>
+  </ng-container>
+
+  <!-- Colonne Email -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let client"> {{client.email}} </td>
+  </ng-container>
+
+<!-- Colonne Action -->
+<ng-container matColumnDef="action">
+  <th mat-header-cell *matHeaderCellDef> Action </th>
+  <td mat-cell *matCellDef="let compte" class="action-cell">
+    
+    <!-- Bouton Modifier -->
+  <button mat-icon-button  matTooltip="Modifier" (click)="modifierCustomer(compte)">
+    <mat-icon>edit</mat-icon>
+  </button>
+
+
+
+    <!-- Bouton Supprimer -->
+    <button mat-icon-button color="warn" (click)="confirmerSuppression(compte)">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </td>
+</ng-container>
+
+  <!-- Header & Row -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+</mat-paginator>
+

@@ -1,0 +1,25 @@
+<form (ngSubmit)="ajouterClient()" #clientForm="ngForm">
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Nom</mat-label>
+    <input matInput name="nom" [(ngModel)]="nouveauClient.nom" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Prénom</mat-label>
+    <input matInput name="prenom" [(ngModel)]="nouveauClient.prenom" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Email</mat-label>
+    <input matInput name="email" [(ngModel)]="nouveauClient.email" required email>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="clientForm.invalid">
+    Ajouter
+  </button>
+  
+  <button mat-button type="button" (click)="dialogRef.close()">
+    Annuler
+  </button>
+</form>

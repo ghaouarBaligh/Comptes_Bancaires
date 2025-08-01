@@ -1,0 +1,27 @@
+<form (ngSubmit)="enregistrerCustomer()" #clientForm="ngForm">
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Nom</mat-label>
+    <input matInput name="nom" [(ngModel)]="nouveauCustomer.nom" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Prénom</mat-label>
+    <input matInput name="prenom" [(ngModel)]="nouveauCustomer.prenom" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Email</mat-label>
+    <input matInput name="email" [(ngModel)]="nouveauCustomer.email" required>
+  </mat-form-field>
+
+  <div class="actions" style="margin-top: 20px;">
+    <button mat-raised-button color="primary" type="submit" [disabled]="clientForm.invalid">
+      Enregistrer
+    </button>
+    
+    <button mat-button type="button" (click)="annuler()">
+      Annuler
+    </button>
+  </div>
+</form>

@@ -1,0 +1,45 @@
+<form (ngSubmit)="ajouterCompte()" #clientForm="ngForm">
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Date de création</mat-label>
+    <input matInput [matDatepicker]="picker" name="dateCreation" [(ngModel)]="nouveauCompte.dateCreation" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
+
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Solde</mat-label>
+        <input matInput type="number" name="solde" [(ngModel)]="nouveauCompte.solde" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+  <mat-label>Etat</mat-label>
+  <mat-select name="etat" [(ngModel)]="nouveauCompte.etat" required>
+    <mat-option [value]="'ACTIVE'">ACTIVE</mat-option>
+    <mat-option [value]="'FERME'">CLOSED</mat-option>
+    <mat-option [value]="'BLOQUE'">SUSPENDED</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+  <mat-label>Client</mat-label>
+  <mat-select [(ngModel)]="selectedClientId" name="client" required>
+    <mat-option *ngFor="let client of clients" [value]="client.id">
+      {{client.id}} - {{client.nom}} {{client.prenom}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="clientForm.invalid">
+    Ajouter
+  </button>
+  
+  <button mat-button type="button" (click)="dialogRef.close()">
+    Annuler
+  </button>
+</form>
